@@ -5,6 +5,9 @@ from datetime import datetime
 import uvicorn
 import pytz
 
+with open("log/Mini2.log", "w") as file:
+    file.write("Fecha de inicio del servidor: " + str(datetime.now()) + "\n")
+
 logging.basicConfig(
     filename='log/Mini2.log',
     level=logging.INFO,
@@ -31,5 +34,3 @@ def get_time():
     current_time = datetime.now(chile_tz).strftime("%H:%M:%S")
     logger.info(f"Se ha accedido a la hora actual de Chile: {current_time}")
     return {"La hora actual en Chile es": current_time}
-
-#primer log que sea la fecha de inicio del servidor
