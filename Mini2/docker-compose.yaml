@@ -1,0 +1,20 @@
+version: '3.7'
+
+services:
+  fastapi-service:
+    build: .
+    container_name: mini2-service
+    volumes:
+      - ./logs:/app/log
+    ports:
+      - "8000:8000"
+    depends_on:
+      - promtail
+
+  promtail:
+    image: grafana/promtail:latest
+    container_name: promtail
+    volumes:
+      - ./promtail-config.yaml:/etc/promtail/config.yaml
+      - ./logs:/app/log/
+    command: --config.file=/etc/promtail/config.yaml
