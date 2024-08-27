@@ -9,10 +9,10 @@ clients:
   - url: https://977685:glc_eyJvIjoiMTIwNDc0NCIsIm4iOiJzdGFjay0xMDE5OTA1LWhsLXdyaXRlLXRhcmVhMWFycXVpIiwiayI6IjhRT2g2YWtEZzhqRzcxOGRuNDU5QVZaNiIsIm0iOnsiciI6InByb2Qtc2EtZWFzdC0xIn19@logs-prod-024.grafana.net/loki/api/v1/push
 
 scrape_configs:
-- job_name: Mini2-logs
+- job_name: Mini1-logs
   static_configs:
   - targets:
       - localhost
     labels:
-      job: horario
-      __path__: 'app/log/Mini2.log'
+      job: contador
+      __path__: 'app/log/Mini1.log'

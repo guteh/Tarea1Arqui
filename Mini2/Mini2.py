@@ -5,8 +5,9 @@ from datetime import datetime
 import uvicorn
 import pytz
 
+chile_tz = pytz.timezone('America/Santiago')
 with open("log/Mini2.log", "w") as file:
-    file.write("Fecha de inicio del servidor: " + str(datetime.now()) + "\n")
+    file.write("Fecha de inicio del servidor Mini2: " + str(datetime.now(chile_tz)) + "\n")
 
 logging.basicConfig(
     filename='log/Mini2.log',
@@ -26,11 +27,17 @@ if __name__ == "__main__":
 @app.get("/")
 def read_root():
     logger.info("Se ha accedido a la raíz del servidor")
-    return {"message": "Hello, World!"}
+    return {"Consultor de horarios"}
 
-@app.get("/time")
+@app.get("/time/chile")
 def get_time():
-    chile_tz = pytz.timezone('America/Santiago')
     current_time = datetime.now(chile_tz).strftime("%H:%M:%S")
     logger.info(f"Se ha accedido a la hora actual de Chile: {current_time}")
     return {"La hora actual en Chile es": current_time}
+
+@app.get("/time/japan")
+def get_japan_time():
+    japan_tz = pytz.timezone('Asia/Tokyo')
+    current_time = datetime.now(japan_tz).strftime("%H:%M:%S")
+    logger.info(f"Se ha accedido a la hora actual de Japón: {current_time}")
+    return {"La hora actual en Japón es": current_time}
